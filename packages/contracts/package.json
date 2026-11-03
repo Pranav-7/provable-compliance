@@ -1,0 +1,22 @@
+{
+  "name": "@pc/contracts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/compile.mjs",
+    "test": "node --import tsx --test test/*.test.ts"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.4.0",
+    "hardhat": "2.29.1",
+    "solc": "0.8.28",
+    "viem": "2.57.13",
+    "@pc/shared": "*"
+  },
+  "main": "./lib/index.ts",
+  "types": "./lib/index.ts",
+  "exports": {
+    ".": "./lib/index.ts"
+  }
+}

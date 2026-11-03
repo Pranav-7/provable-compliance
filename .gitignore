@@ -1,0 +1,8 @@
+node_modules/
+.runtime/
+apps/web/dist/
+packages/circuits/target/
+packages/contracts/artifacts/
+packages/contracts/src/generated/
+*.log
+.DS_Store

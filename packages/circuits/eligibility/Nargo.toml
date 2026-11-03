@@ -1,0 +1,7 @@
+[package]
+name = "eligibility"
+type = "bin"
+authors = ["Pranav Shinde"]
+compiler_version = ">=1.0.0"
+
+[dependencies]

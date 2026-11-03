@@ -1,0 +1,28 @@
+{
+  "name": "provable-compliance",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Proof-of-concept: making a bank's compliance decisions provable on a public blockchain.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20.10"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "start": "node start.js",
+    "start:dev-proofs": "node start.js --dev-proofs",
+    "test": "npm test -w @pc/shared && npm test -w @pc/circuits && npm test -w @pc/contracts && npm test -w @pc/server",
+    "test:fast": "npm test -w @pc/shared && SKIP_PROVING=1 npm test -w @pc/circuits && npm test -w @pc/contracts && PROOF_SYSTEM=dev npm test -w @pc/server",
+    "build": "npm run build -w @pc/circuits && npm run build -w @pc/contracts && npm run build -w @pc/web",
+    "typecheck": "tsc -p tsconfig.json && tsc -p apps/web/tsconfig.json"
+  },
+  "devDependencies": {
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "@types/node": "22.20.5"
+  }
+}

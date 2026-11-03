@@ -1,0 +1,19 @@
+{
+  "name": "@pc/wallet",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Holder wallets: keep credentials, generate zero-knowledge proofs locally, submit transactions.",
+  "main": "./src/main.ts",
+  "scripts": {
+    "start": "tsx src/main.ts"
+  },
+  "dependencies": {
+    "@aztec/bb.js": "5.3.0",
+    "@pc/circuits": "*",
+    "@pc/contracts": "*",
+    "@pc/shared": "*",
+    "fastify": "5.6.1",
+    "viem": "2.57.13"
+  }
+}

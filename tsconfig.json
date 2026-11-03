@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.base.json",
+  "include": ["packages/shared/src", "packages/shared/test", "packages/circuits/test", "packages/contracts/test", "packages/contracts/scripts/*.ts", "apps/server/src", "apps/wallet/src", "apps/auditor/src", "apps/server/test"]
+}

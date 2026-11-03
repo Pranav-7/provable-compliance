@@ -1,0 +1,20 @@
+{
+  "name": "@pc/server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Issuing bank: issuer desk, compliant RPC node, decision log and audit service.",
+  "main": "./src/main.ts",
+  "scripts": {
+    "start": "tsx src/main.ts",
+    "test": "node --import tsx --test test/*.test.ts"
+  },
+  "dependencies": {
+    "@aztec/bb.js": "5.3.0",
+    "@pc/circuits": "*",
+    "@pc/contracts": "*",
+    "@pc/shared": "*",
+    "fastify": "5.6.1",
+    "viem": "2.57.13"
+  }
+}
