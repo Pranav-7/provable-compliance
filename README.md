@@ -4,12 +4,13 @@
 
 It implements Layers 1 to 4 of the architecture in the accompanying note, *Making Compliance Provable on Public Blockchains*, end to end, with a first step of Layer 6: real zero-knowledge proofs, on-chain verification, credential revocation, a Merkle-anchored audit trail and an independent auditor that can check any decision from the proof alone or from the proof and its data. It runs one case study: interbank settlement of a tokenised deposit.
 
-<!-- DEMO VIDEO: replace with a link or embedded GIF of the walkthrough -->
-> **Demo video:** _coming soon_
+## Demo
 
-<!-- ARCHITECTURE DIAGRAM: replace with docs/architecture.png -->
-> **Architecture diagram:**
-> ![Architecture Diagram](./assets/Codebase_Architecture.png)
+[![Watch the 3-minute demo](https://www.loom.com/v1/videos/c1b5c0add3e0420c8d81a70c82d2dbc6/thumbnail.gif)](https://www.loom.com/share/c1b5c0add3e0420c8d81a70c82d2dbc6)
+
+**[▶ Watch the 3-minute walkthrough on Loom](https://www.loom.com/share/c1b5c0add3e0420c8d81a70c82d2dbc6)**
+
+## Quick start
 
 ```bash
 npm start      # installs, builds, deploys and opens http://localhost:3000
@@ -55,6 +56,8 @@ The envelope is `X25519 + HKDF-SHA256 + ChaCha20-Poly1305`, authenticated to the
 ## Architecture
 
 The wallet, the bank and the auditor are separate processes with separate responsibilities: the bank never sees a holder's private inputs, and the auditor reads the chain directly, treating the bank's answers as claims to check.
+
+![Architecture: how a transfer moves through policy, credentials, proof, routing, the decision log and the auditor](./assets/Codebase_Architecture.png)
 
 ```mermaid
 flowchart LR
@@ -137,7 +140,7 @@ npm run typecheck
 
 | Suite | Covers |
 |---|---|
-| `packages/shared` | Policy canonicalisation and fingerprint stability, parameter derivation for both policies, Merkle proofs for every tree size, tamper detection, envelope confidentiality, authentication and unlinkability |
+| `packages/shared` | Policy canonicalisation and fingerprint stability, parameter derivation, Merkle proofs for every tree size, tamper detection, envelope confidentiality, authentication and unlinkability |
 | `packages/circuits` | TypeScript and Noir agree on roots; revoked, wrong-jurisdiction, wrong-class, expired, wrong-holder and tampered credentials are unprovable; a real proof verifies and a forged public input fails |
 | `packages/contracts` | Public-input ordering matches the circuit; off-chain bindings match on-chain; envelope required and bound; append-only policies; issuance and transfer gating; replay and redirection; balance cap; stale root; proof freshness; historical public inputs; on-chain record verification |
 | `apps/server` (e2e) | The full story across chain, bank, wallets and auditor: every route, every rejection reason, anchoring, on-chain audit, and every decision re-checked in both audit modes |
@@ -149,7 +152,7 @@ This is a proof of concept, built to make the architecture concrete. Deliberate 
 - **Local chains and development keys.** Accounts use Hardhat's public test mnemonic, and the auditor's demo key is in the source. Nothing here should hold real value.
 - **Credential delivery.** Holders collect their credential over an unauthenticated local API; production would use an authenticated wallet channel and holder-generated secrets.
 - **One auditor key.** Production would use a key held by the supervisor or split across parties (threshold decryption), which is the rest of Layer 6.
-- **Single issuer per case.** Cross-issuer credentials and policy migration belong to Layer 8.
+- **Single issuer.** Cross-issuer credentials and policy migration belong to Layer 8.
 - **Amounts and addresses are public.** Hiding them is Layer 5 (for example ERC-7984); discussed in the note, not built.
 - **Revocation lapses all passes.** Simple and safe; a production design would use an append-only registry with a separate revocation accumulator so honest holders are not forced to re-prove.
 - **Gas.** On-chain UltraHonk verification costs a few million gas per proof, which is why the note suggests starting with issuance, redemption and new counterparties.
@@ -160,4 +163,4 @@ Noir 1.0 · Barretenberg (bb.js 5.3, UltraHonk) · Solidity 0.8.28 · OpenZeppel
 
 ---
 
-Pranav Shinde · October 2026 · MIT licence
+Pranav Shinde · November 2026 · MIT licence
